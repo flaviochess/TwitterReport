@@ -1,0 +1,6 @@
+## Zuul.
+zuul:
+    routes:
+        api:
+            path: /api/**
+            url: http://localhost:9080
