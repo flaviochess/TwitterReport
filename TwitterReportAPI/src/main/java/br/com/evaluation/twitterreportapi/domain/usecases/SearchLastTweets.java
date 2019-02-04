@@ -1,11 +1,12 @@
 package br.com.evaluation.twitterreportapi.domain.usecases;
 
+import br.com.evaluation.twitterreportapi.domain.entities.TweetEntity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class SearchLastTweets {
 
     private final List<String> hashtags
-            = Arrays.asList("#openbanking", "#apifirst", "#devops", "#cloudfirst",
+            = Arrays.asList("#hashtagnuncausada", "#openbanking", "#apifirst", "#devops", "#cloudfirst",
                     "#microservices", "#apigateway", "#oauth", "#swagger", "#raml", "#openapis");
 
     private final Twitter twitter;
@@ -26,13 +27,24 @@ public class SearchLastTweets {
         this.modelMapper = modelMapper;
     }
 
-    public List<Tweet> execute() {
+    public List<TweetEntity> execute() {
 
-        List<Tweet> tweets = new ArrayList();
+        List<TweetEntity> tweets = new ArrayList();
 
         hashtags.stream()
-                .forEach(hashtag
-                        -> tweets.addAll(twitter.searchOperations().search(hashtag).getTweets()));
+                .forEach(hashtag -> {
+
+                    List<TweetEntity> convetedTweet = twitter.searchOperations().search(hashtag).getTweets()
+                            .stream()
+                            .map(tweet -> modelMapper.map(tweet, TweetEntity.class))
+                            .map(tweetEntity -> {
+                                tweetEntity.setMainHashtag(hashtag);
+                                return tweetEntity;
+                            })
+                            .collect(Collectors.toList());
+
+                    tweets.addAll(convetedTweet);
+                });
 
         return tweets;
     }
