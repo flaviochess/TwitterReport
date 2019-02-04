@@ -50,12 +50,3 @@ public class SearchLastTweets {
     }
 
 }
-
-//        System.out.println("Tweets: " + tweets.size());
-//        System.out.println("User: " + tweets.get(0).getFromUser());
-//        System.out.println("Language code: " + tweets.get(0).getLanguageCode());
-//        System.out.println("create at: " + tweets.get(0).getCreatedAt());
-//        System.out.println("dados extras: " + tweets.get(0).getExtraData());
-//        System.out.println("user language: " + tweets.get(0).getUser().getLanguage());
-//        System.out.println("followers: " + tweets.get(0).getUser().getFollowersCount());
-//        System.out.println("location: " + tweets.get(0).getUser().getLocation());
