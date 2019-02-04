@@ -4,9 +4,9 @@
   <li *ngFor="let hashtagCountry of hashtagsCountrys">
     {{hashtagCountry.hashtag}}
     <ul>
-      <ol *ngFor="let countryAmount of hashtagCountry.countrysAmount">
+      <li *ngFor="let countryAmount of hashtagCountry.countrysAmount">
         {{countryAmount.amount}} - {{countryAmount.country}}
-      </ol>
+      </li>
     </ul>
   </li>
 </ul>
