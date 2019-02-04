@@ -1,0 +1,14 @@
+<h2>Top 5 usários com mais seguidores</h2>
+<ul class="top5">
+  <li *ngFor="let twitterUser of twitterUsers" 
+      [class.selected]="twitterUser === selectedTwitterUser"
+      (click)="onSelect(twitterUser)">
+    <span class="badge">{{twitterUser.totalFollowers}}</span> {{twitterUser.user}}
+  </li>
+</ul>
+
+<div *ngIf="selectedTwitterUser">
+  <h2>Detalhes do usuário {{selectedTwitterUser.user | uppercase}}</h2>
+  <div><span>Usuário: </span>{{selectedTwitterUser.user}}</div>
+  <div><span>Quantidade de Seguidores: </span>{{selectedTwitterUser.totalFollowers}}</div>
+</div>
