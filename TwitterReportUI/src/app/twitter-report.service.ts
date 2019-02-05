@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TwitterUser } from './twitterUser';
-import { TWITTER_USERS } from './mock-twitterusers';
 import { TweetByHour } from './tweetByHour';
-import { TWEETS_HOUR } from './mock-tweets-by-hour';
-import { HashtagCountry } from './hashtagCountry';
-import { HASHTAGS_COUNTRYS } from './mock-hastags-country';
+import { HashtagLanguage } from './hashtagLanguage';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -12,17 +10,19 @@ import { Observable, of } from 'rxjs';
 })
 export class TwitterReportService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  private twitterReportUrl = 'http://localhost:8080/api/twitter';
 
   getTop5TwitterUsers(): Observable<TwitterUser[]> {
-    return of(TWITTER_USERS);
+    return this.http.get<TwitterUser[]>(this.twitterReportUrl + '/top-users/5');
   }
 
   getTweetsByHour() : Observable<TweetByHour[]> {
-    return of(TWEETS_HOUR);
+    return this.http.get<TweetByHour[]>(this.twitterReportUrl + '/report-tweets-hourly');
   }
 
-  getHashtagsByCountry() : Observable<HashtagCountry[]> {
-    return of(HASHTAGS_COUNTRYS);
+  getHashtagsByLanguage() : Observable<HashtagLanguage[]> {
+    return this.http.get<HashtagLanguage[]>(this.twitterReportUrl + '/report-hashtag-language');
   }
 }

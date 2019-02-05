@@ -1,7 +1,11 @@
 <h3>Total de Tweets por Hora</h3>
 
-<ul>
-  <li *ngFor="let tweetByHour of tweetsByHour">
-    <span>{{tweetByHour.amount}}</span> tweets às {{tweetByHour.hour}} horas
-  </li>
-</ul>
+<table>
+  <tr *ngFor="let tweetByHour of tweetsByHour">
+    <td class="tweetshour">{{tweetByHour.count}}</td>
+    <td> tweets às </td>
+    <td class="tweetshour">{{tweetByHour.hour}}</td>
+    <td> horas do dia </td>
+    <td class="tweetshour">{{tweetByHour.day}}/{{tweetByHour.month}}/{{tweetByHour.year}}</td>
+  </tr>
+</table>

@@ -28,8 +28,16 @@ services:
       - twitter-net
       - twitter-external-net
     depends_on:
-      - mongodb
       - twitter-api
+    
+  twitter-ui:
+    image: flaviochess/twitter-report-ui:latest
+    ports:
+      - 4200:4200
+    networks:
+      - twitter-external-net
+    depends_on: 
+      - gateway-api
     
 networks: 
   twitter-net:
