@@ -11,8 +11,8 @@ services:
   twitter-api:
     image: flaviochess/twitter-report-api:latest
     environment: 
-      - TWITTER_APP_ID=yix4Ai9xDbWBKV3yFPFGs8Nkf 
-      - TWITTER_APP_SECRET=9rXtdeYe5v3wmGR5E96ubiXRDeWzZFgRt2ZYdgSKeQFivw0OtD
+      - TWITTER_APP_ID=<YOUR-APP-ID> 
+      - TWITTER_APP_SECRET=<YOUR-APP-SECRET>
     ports:
       - 9080:9080
     networks:
