@@ -9,6 +9,7 @@ import br.com.evaluation.twitterreportapi.infra.dtos.UserFollowersDto;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,10 +30,10 @@ public class TwitterStatisticsController {
         this.reportAmountHashtagByLanguage = reportAmountHashtagByLanguage;
     }
 
-    @GetMapping("/top-users")
-    public List<UserFollowersDto> searchUsersWithMoreFollowers() {
+    @GetMapping("/top-users/{amount}")
+    public List<UserFollowersDto> searchUsersWithMoreFollowers(@PathVariable("amount") int amount) {
 
-        return searchUsersWithMoreFollowers.search(5);
+        return searchUsersWithMoreFollowers.search(amount);
     }
 
     @GetMapping("/report-tweets-hourly")
