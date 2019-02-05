@@ -3,12 +3,12 @@
   <li *ngFor="let twitterUser of twitterUsers" 
       [class.selected]="twitterUser === selectedTwitterUser"
       (click)="onSelect(twitterUser)">
-    <span class="badge">{{twitterUser.totalFollowers}}</span> {{twitterUser.user}}
+    <span class="badge">{{twitterUser.followersCount}}</span> {{twitterUser.fromUser}}
   </li>
 </ul>
 
 <div *ngIf="selectedTwitterUser">
-  <h2>Detalhes do usuário {{selectedTwitterUser.user | uppercase}}</h2>
-  <div><span>Usuário: </span>{{selectedTwitterUser.user}}</div>
-  <div><span>Quantidade de Seguidores: </span>{{selectedTwitterUser.totalFollowers}}</div>
+  <h2>Detalhes do usuário {{selectedTwitterUser.fromUser | uppercase}}</h2>
+  <div><span>Usuário: </span>{{selectedTwitterUser.fromUser}}</div>
+  <div><span>Quantidade de Seguidores: </span>{{selectedTwitterUser.followersCount}}</div>
 </div>
