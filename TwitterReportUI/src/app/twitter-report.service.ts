@@ -12,7 +12,7 @@ export class TwitterReportService {
 
   constructor(private http: HttpClient) { }
 
-  private twitterReportUrl = 'http://localhost:8080/api/twitter';
+  private twitterReportUrl = 'http://gateway-api:8080/api/twitter';
 
   getTop5TwitterUsers(): Observable<TwitterUser[]> {
     return this.http.get<TwitterUser[]>(this.twitterReportUrl + '/top-users/5');
