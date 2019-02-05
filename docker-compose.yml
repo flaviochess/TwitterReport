@@ -1,0 +1,37 @@
+version: "3.6"
+
+services:
+  mongodb:
+    image: mongo:3.6
+    ports:
+      - 27017:27017
+    networks:
+      - twitter-net
+  
+  twitter-api:
+    image: flaviochess/twitter-report-api:latest
+    environment: 
+      - TWITTER_APP_ID=yix4Ai9xDbWBKV3yFPFGs8Nkf 
+      - TWITTER_APP_SECRET=9rXtdeYe5v3wmGR5E96ubiXRDeWzZFgRt2ZYdgSKeQFivw0OtD
+    ports:
+      - 9080:9080
+    networks:
+      - twitter-net
+    depends_on:
+      - mongodb
+
+  gateway-api:
+    image: flaviochess/twitter-report-gateway-api:latest
+    ports:
+      - 8080:8080
+    networks:
+      - twitter-net
+      - twitter-external-net
+    depends_on:
+      - mongodb
+      - twitter-api
+    
+networks: 
+  twitter-net:
+  twitter-external-net:
+    driver: bridge

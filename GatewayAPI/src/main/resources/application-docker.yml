@@ -1,0 +1,6 @@
+## Zuul
+zuul:
+    routes:
+        api:
+            path: /api/**
+            url: http://twitter-api:9080

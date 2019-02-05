@@ -1,0 +1,13 @@
+## Application
+server:
+    port: 9080
+
+spring:
+  social:
+    twitter:
+      app-id: ${TWITTER_APP_ID}
+      app-secret: ${TWITTER_APP_SECRET}
+  data:
+    mongodb:
+      database: twitter
+      host: mongodb
