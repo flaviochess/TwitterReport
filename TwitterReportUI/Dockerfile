@@ -4,4 +4,4 @@ RUN mkdir -p /www
 COPY . /www
 WORKDIR /www
 
-CMD ng serve
+CMD ng serve --host=0.0.0.0
